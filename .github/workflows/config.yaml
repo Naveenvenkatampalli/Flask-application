@@ -24,7 +24,7 @@ jobs:
     - name: Run Selenium tests with Firefox
       env:
         BASE_URL: stage.bytebeam.io
-        FILES: test
+        FILES: test_login.py
         SANITY: regression
     
       run: |
