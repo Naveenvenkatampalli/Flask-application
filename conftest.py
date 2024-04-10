@@ -6,20 +6,23 @@ from webdriver_manager.chrome import ChromeDriverManager
 import pytest
 import os
 
-# Fixture for command-line options
-def pytest_addoption(parser):
-    parser.addoption("--sanity", action="store_true", help="Run tests in sanity mode")
+# # Fixture for command-line options
+# def pytest_addoption(parser):
+#     parser.addoption("--sanity", action="store_true", help="Run tests in sanity mode")
 
+# @pytest.fixture(scope="session")
+# def sanity_mode(request):
+#     return request.config.getoption("--sanity")
+
+# def pytest_addoption(parser):
+#     parser.addoption("--base_url", action="store_true", help="Run tests in sanity mode")
+
+# @pytest.fixture(scope="session")
+# def base_url_mode(request):
+#     return request.config.getoption("--base_url")
 @pytest.fixture(scope="session")
-def sanity_mode(request):
-    return request.config.getoption("--sanity")
-
-def pytest_addoption(parser):
-    parser.addoption("--base_url", action="store_true", help="Run tests in sanity mode")
-
-@pytest.fixture(scope="session")
-def base_url_mode(request):
-    return request.config.getoption("--base_url")
+def sanity_mode():
+    return os.environ.get('SANITY', 'false').lower() == 'true'
 
 @pytest.fixture(scope="session")
 def drivers():
