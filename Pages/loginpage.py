@@ -25,9 +25,9 @@ import re
 import sys
 
 class LoginPage(BasePage):
-    def __init__(self, driver, base_url_mode):
+    def __init__(self, driver):
         super().__init__(driver)
-        self.base_url_mode = base_url_mode
+        # self.base_url_mode = base_url_mode
 
     
 
