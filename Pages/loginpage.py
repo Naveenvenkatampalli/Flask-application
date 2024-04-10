@@ -32,7 +32,7 @@ class LoginPage(BasePage):
     
 
     def login_github(self):
-        self.driver.get(self.base_url_mode)
+        self.driver.get(TestData.BASE_URL)
         
         time.sleep(7)
         
