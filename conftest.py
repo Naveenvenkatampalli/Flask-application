@@ -18,7 +18,7 @@ def pytest_addoption(parser):
     parser.addoption("--base_url", action="store_true", help="Run tests in sanity mode")
 
 @pytest.fixture(scope="session")
-def sanity_mode(request):
+def base_url_mode(request):
     return request.config.getoption("--base_url")
 
 @pytest.fixture(scope="session")
