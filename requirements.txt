@@ -1,0 +1,17 @@
+pyperclip==1.8.2
+pytest==7.4.2
+pytest-html==4.0.2
+pytest-metadata==3.0.0
+pytest-ordering==0.6
+pytest-dependency==0.5.1
+pytweening==1.0.7
+python-dotenv==1.0.0
+PyAutoGUI==0.9.54
+pyperclip==1.8.2
+requests==2.31.0
+selenium==4.14.0
+urllib3==2.0.6
+webdriver-manager==4.0.1
+pyttsx3==2.90
+pytweening==1.0.7
+PyVirtualDisplay==3.0
