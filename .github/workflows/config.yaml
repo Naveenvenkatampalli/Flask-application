@@ -1,5 +1,5 @@
 name: Selenium Automation
-true:
+on:
 push:
   branches:
   - main
