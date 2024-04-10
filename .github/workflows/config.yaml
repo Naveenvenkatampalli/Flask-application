@@ -28,6 +28,8 @@ jobs:
         SANITY: regression
     
       run: |
+        echo "BASE_URL: $BASE_URL"
+        echo "SANITY: $SANITY"
         if [ "$SANITY" == "regression" ]; then
               pytest --sanity --html=reports/report.html --base_url=$BASE_URL $FILES
         else
