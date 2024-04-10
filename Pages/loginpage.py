@@ -25,14 +25,14 @@ import re
 import sys
 
 class LoginPage(BasePage):
-    def __init__(self, driver):
+    def __init__(self, driver, base_url_mode):
         super().__init__(driver)
+        self.base_url_mode = base_url_mode
 
     
 
     def login_github(self):
-        print(TestData.BASE_URL)
-        self.driver.get(TestData.BASE_URL)
+        self.driver.get(self.base_url_mode)
         
         time.sleep(7)
         
