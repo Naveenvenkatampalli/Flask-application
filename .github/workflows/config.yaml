@@ -33,7 +33,7 @@ jobs:
         name: test-reports
         path: reports
 name: Selenium Automation
-'true':
+'on':
   push:
     branches:
     - main
