@@ -35,5 +35,5 @@ jobs:
         path: reports
 env:
   BASE_URL: stage.bytebeam.io
-  FILES: test
+  FILES: ''
   SANITY: regression
