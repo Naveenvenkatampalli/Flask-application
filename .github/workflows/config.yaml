@@ -1,5 +1,5 @@
 name: Selenium Automation
-on:
+true:
   push:
     branches:
     - main
@@ -28,12 +28,8 @@ jobs:
         FILES: test
         SANITY: regression
     - name: Run Selenium tests with Firefox
-      run: |
-        if [ "$SANITY" == "True" ]; then
-          pytest -k $FILES --html=reports/report.html --$BASE_URL
-        else
-          pytest -k $FILES --html=reports/report.html
-        fi
+      run: "if [ \"$SANITY\" == \"True\" ]; then\n  pytest -k $FILES --html=reports/report.html\
+        \ --$BASE_URL\nelse\n  pytest -k $FILES --html=reports/report.html\nfi\n"
     - if: always()
       name: Upload Reports as Artifacts
       uses: actions/upload-artifact@v2
