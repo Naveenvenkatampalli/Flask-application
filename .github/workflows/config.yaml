@@ -1,38 +1,38 @@
 name: Selenium Automation
 true:
-  push:
-    branches:
-    - main
+push:
+  branches:
+  - main
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.x
-    - name: Install dependencies
-      run: 'python -m pip install --upgrade pip
+test:
+  runs-on: ubuntu-latest
+  steps:
+  - name: Checkout code
+    uses: actions/checkout@v2
+  - name: Set up Python
+    uses: actions/setup-python@v2
+    with:
+      python-version: 3.x
+  - name: Install dependencies
+    run: 'python -m pip install --upgrade pip
 
-        pip install -r requirements.txt  # If you have a requirements file
+      pip install -r requirements.txt  # If you have a requirements file
 
-        '
-    - name: Create Reports Directory
-      run: 'python -c "import os; os.makedirs(''reports'', exist_ok=True)"
+      '
+  - name: Create Reports Directory
+    run: 'python -c "import os; os.makedirs(''reports'', exist_ok=True)"
 
-        '
-    - env:
-        BASE_URL: stage.bytebeam.io
-        FILES: test
-        SANITY: regression
-    - name: Run Selenium tests with Firefox
-      run: "if [ \"$SANITY\" == \"True\" ]; then\n  pytest -k $FILES --html=reports/report.html\
-        \ --$BASE_URL\nelse\n  pytest -k $FILES --html=reports/report.html\nfi\n"
-    - if: always()
-      name: Upload Reports as Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: test-reports
-        path: reports
+      '
+  - env:
+      BASE_URL: stage.bytebeam.io
+      FILES: test
+      SANITY: regression
+  - name: Run Selenium tests with Firefox
+    run: "if [ \"$SANITY\" == \"True\" ]; then\n  pytest -k $FILES --html=reports/report.html\
+      \ --$BASE_URL\nelse\n  pytest -k $FILES --html=reports/report.html\nfi\n"
+  - if: always()
+    name: Upload Reports as Artifacts
+    uses: actions/upload-artifact@v2
+    with:
+      name: test-reports
+      path: reports
