@@ -31,9 +31,9 @@ jobs:
         echo "BASE_URL: $BASE_URL"
         echo "SANITY: $SANITY"
         if [ "$SANITY" == "regression" ]; then
-              pytest -k --sanity --html=reports/report.html $FILES
+              pytest -k $FILES --sanity --html=reports/report.html
         else
-              pytest -k --html=reports/report.html $FILES
+              pytest -k $FILES --html=reports/report.html
         fi
         
     
