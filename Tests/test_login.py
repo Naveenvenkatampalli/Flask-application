@@ -5,7 +5,7 @@ import pytest
 @pytest.mark.run(order=1)
 @pytest.mark.usefixtures("drivers")
 class Test_Login(BaseTest):
-    def test_login(self, drivers, sanity_mode, base_url_mode):
+    def test_login(self, drivers, sanity_mode):
         driver1, driver2, driver3, driver4 = drivers
         
         login_page1 = LoginPage(driver1)
