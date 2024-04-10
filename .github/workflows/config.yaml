@@ -19,7 +19,7 @@ jobs:
         pip install -r requirements.txt  # If you have a requirements file
   
     - name: Create Reports Directory
-      run: python -c "import os; os.makedirs(''reports'', exist_ok=True)"
+      run: python -c "import os; os.makedirs('reports', exist_ok=True)"
       
     - name: Run Selenium tests with Firefox
       env:
