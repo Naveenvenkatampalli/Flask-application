@@ -1,8 +1,8 @@
 name: Selenium Automation
-true:
+on:
   push:
     branches:
-    - sanity_branch
+    - main
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -27,10 +27,13 @@ jobs:
         BASE_URL: stage.bytebeam.io
         FILES: test
         SANITY: regression
-      name: Run Selenium tests with Firefox
-      run: "echo \"PATH: $PATH\"\necho \"BASE_URL: $BASE_URL\"\nif [ \"$SANITY\" ==\
-        \ \"True\" ]; then\n  pytest -k $FILES --html=reports/report.html --$BASE_URL\n\
-        else\n  pytest -k $FILES --html=reports/report.html\nfi\n"
+    - name: Run Selenium tests with Firefox
+      run: |
+        if [ "$SANITY" == "True" ]; then
+          pytest -k $FILES --html=reports/report.html --$BASE_URL
+        else
+          pytest -k $FILES --html=reports/report.html
+        fi
     - if: always()
       name: Upload Reports as Artifacts
       uses: actions/upload-artifact@v2
