@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Suite Configuration</title>
+</head>
+<body>
+    <h1>Automation Suite Configuration</h1>
+    <form method="post" action="/submit">
+        <label for="client">Client:</label>
+        <select name="client" id="client">
+            <option value="client1">Client 1</option>
+            <option value="client2">Client 2</option>
+            <!-- Add more clients as needed -->
+        </select><br><br>
+
+        <label for="mode">Mode:</label>
+        <select name="mode" id="mode">
+            <option value="regression">Regression</option>
+            <option value="sanity">Sanity</option>
+        </select><br><br>
+
+        <label for="files">Files to Run:</label>
+        <input type="text" name="files" id="files"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
