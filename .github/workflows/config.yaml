@@ -23,11 +23,12 @@ test:
     run: 'python -c "import os; os.makedirs(''reports'', exist_ok=True)"
 
       '
-  - env:
+  - name: Run Selenium tests with Firefox
+    env:
       BASE_URL: stage.bytebeam.io
       FILES: test
       SANITY: regression
-  - name: Run Selenium tests with Firefox
+  
     run: "if [ \"$SANITY\" == \"True\" ]; then\n  pytest -k $FILES --html=reports/report.html\
       \ --$BASE_URL\nelse\n  pytest -k $FILES --html=reports/report.html\nfi\n"
   - if: always()
