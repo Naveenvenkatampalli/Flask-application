@@ -21,8 +21,8 @@ jobs:
       run: python -c "import os; os.makedirs('reports', exist_ok=True)"
     - name: Run Selenium tests with Firefox
       env:
-        BASE_URL: stage.bytebeam.io
-        FILES: ''
+        BASE_URL: http://stage.bytebeam.io
+        FILES: test_login.py
         SANITY: regression
       run: "echo \"BASE_URL: $BASE_URL\"\necho \"SANITY: $SANITY\"\nif [ \"$SANITY\"\
         \ == \"regression\" ]; then\n      pytest -k test --html=reports/report.html\n\
