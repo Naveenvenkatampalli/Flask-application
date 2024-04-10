@@ -1,40 +1,45 @@
-BASE_URL: stage.bytebeam.io
-FILES: test
-SANITY: regression
-content:
-  name: Selenium Automation
-  true:
-    push:
-      branches:
+name: Selenium Automation
+on:
+  push:
+    branches:
       - main
-  jobs:
-    test:
-      runs-on: ubuntu-latest
-      steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
-      - name: Install dependencies
-        run: 'python -m pip install --upgrade pip
-
-          pip install -r requirements.txt'
-      - name: Create Reports Directory
-        run: python -c "import os; os.makedirs('reports', exist_ok=True)"
-      - env:
-          BASE_URL: stage.bytebeam.io
-          FILES: test_login.py
-          SANITY: regression
-        name: Run Selenium tests with Firefox
-        run: "echo \"BASE_URL: $BASE_URL\"\necho \"SANITY: $SANITY\"\nif [ \"$SANITY\"\
-          \ == \"regression\" ]; then\n      pytest -k test --html=reports/report.html\n\
-          else\n      pytest -k test --html=reports/report.html\nfi\n"
-      - if: always()
-        name: Upload Reports as Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-reports
-          path: reports
-sha: e7a5b5358e689014ecf584bdcea6301847e7c15f
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
+    - name: Install dependencies
+      run: python -m pip install --upgrade pip
+  
+        pip install -r requirements.txt  # If you have a requirements file
+  
+    - name: Create Reports Directory
+      run: python -c "import os; os.makedirs('reports', exist_ok=True)"
+      
+    - name: Run Selenium tests with Firefox
+      env:
+        BASE_URL: stage.bytebeam.io
+        FILES: test_login.py
+        SANITY: regression
+    
+      run: |
+        echo "BASE_URL: $BASE_URL"
+        echo "SANITY: $SANITY"
+        if [ "$SANITY" == "regression" ]; then
+              pytest -k test --html=reports/report.html
+        else
+              pytest -k test --html=reports/report.html
+        fi
+        
+    
+    - name: Upload Reports as Artifacts
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-reports
+        path: reports
