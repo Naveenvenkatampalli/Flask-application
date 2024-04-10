@@ -1,16 +1,16 @@
-name: Your Workflow Name
-
-on:
-  push:
-    branches:
+client: client1
+content:
+  name: Your Workflow Name
+  true:
+    push:
+      branches:
       - main
-
-jobs:
-  your-job-name:
-    runs-on: ubuntu-latest
-
-    steps:
+  jobs:
+    your-job-name:
+      runs-on: ubuntu-latest
+      steps:
       - name: Automation run
         run: python new.py
-
-      # Your other steps here
+files: ''
+mode: regression
+sha: a50f76386fbaed637045345d9c97d8c422cc6f5f
