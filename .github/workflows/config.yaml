@@ -29,9 +29,9 @@ jobs:
     
       run: |
         if [ "$SANITY" == "regression" ]; then
-              pytest -k $FILES --html=reports/report.html --$BASE_URL
+              pytest --sanity --html=reports/report.html --base_url=$BASE_URL $FILES
         else
-              pytest -k $FILES --html=reports/report.html
+              pytest --html=reports/report.html --base_url=$BASE_URL $FILES
         fi
         
     
