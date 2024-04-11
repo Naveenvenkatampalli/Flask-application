@@ -26,8 +26,9 @@ jobs:
         SANITY: regression
       run: |
         if [ "$SANITY" == "regression" ]; then
-          IFS=' ' read -ra ADDR <<< "$FILES"
-          pytest "${ADDR[@]}" --html=reports/report.html
+          for FILE in $FILES; do
+            pytest "$FILE" --html=reports/report.html
+          done
         else
           pytest --html=reports/report.html
         fi
