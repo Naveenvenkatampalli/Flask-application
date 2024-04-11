@@ -180,7 +180,7 @@ def submit():
         url = f"https://github.com/{REPO_OWNER}/{REPO_NAME}/actions/runs/{run_id}"
         # If run_id is found, return it in the response
         # return jsonify({'message': 'Configuration submitted successfully!', 'run_id': run_id, 'url': url})
-        return 'Action triggered and click on this link to see the status: ' + f'<a href="{url}" target="_blank">View Workflow Run</a>' + '<br> Note: You can download the test-reports.zip file in the artifact section to see the generated report.'
+        return 'Action triggered. You can click on this link to see the status: ' + f'<a href="{url}" target="_blank">View Workflow Run</a>' + '<br> Note: You can also download the test-reports.zip file in the artifact section to see the generated report.'
     else:
         return jsonify({'message': 'Configuration submitted, but run ID not found.'}), 404
 
