@@ -24,8 +24,13 @@ jobs:
         BASE_URL: http://stage.bytebeam.io
         FILES: Tests/test_login.py Tests/test_meta.py
         SANITY: regression
-      run: "if [ \"$SANITY\" == \"regression\" ]; then\n  pytest \"$FILES\" --html=reports/report.html\n\
-        else\n  pytest --html=reports/report.html\nfi\n"
+      run: |
+        if [ "$SANITY" == "regression" ]; then
+          IFS=' ' read -ra ADDR <<< "$FILES"
+          pytest "${ADDR[@]}" --html=reports/report.html
+        else
+          pytest --html=reports/report.html
+        fi
     - name: Upload Reports as Artifacts
       if: always()
       uses: actions/upload-artifact@v2
