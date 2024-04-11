@@ -1,16 +1,11 @@
 name: Your Workflow Name
-
-on:
+'on':
   push:
     branches:
-      - main
-
+    - main
 jobs:
   your-job-name:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Automation run
-        run: python app.py
-
-      # Your other steps here
+    - name: Automation run
+      run: python app.py
