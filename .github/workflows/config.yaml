@@ -17,8 +17,8 @@ jobs:
       run: 'python -m pip install --upgrade pip
 
         pip install -r requirements.txt'
-    - name: Create Reports Directory
-      run: python -c "import os; os.makedirs('reports', exist_ok=True)"
+    # - name: Create Reports Directory
+    #   run: python -c "import os; os.makedirs('reports', exist_ok=True)"
     - name: Run Selenium tests with Firefox
       env:
         BASE_URL: http://stage.bytebeam.io
@@ -26,9 +26,9 @@ jobs:
         SANITY: regression
       run: "if [ \"$SANITY\" == \"regression\" ]; then\n  pytest $FILES --html=reports/report.html\n\
         else\n  pytest --html=reports/report.html\nfi\n"
-    - name: Upload Reports as Artifacts
+    - name: Upload Report as Artifact
       if: always()
       uses: actions/upload-artifact@v2
       with:
-        name: test-reports
-        path: reports
+        name: report
+        path: report.html
