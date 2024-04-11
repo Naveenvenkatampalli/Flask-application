@@ -1,11 +1,39 @@
-name: Your Workflow Name
-'on':
+name: Selenium Automation
+on:
   push:
     branches:
-    - main
+      - main
 jobs:
-  your-job-name:
+  test:
     runs-on: ubuntu-latest
     steps:
-    - name: Automation run
-      run: python app.py
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # If you have a requirements file
+          
+      - name: Create Reports Directory
+        run: 'python -c "import os; os.makedirs(''reports'', exist_ok=True)"'
+      - name: Run Selenium tests with Firefox
+        env:
+          BASE_URL: base_url
+          FILES: one
+          SANITY: 'False'
+        run: |
+          if [ "$SANITY" == "regression" ]; then
+            pytest $FILES --html=reports/report.html
+          else
+            pytest --html=reports/report.html
+          fi
+      - if: always()
+        name: Upload Reports as Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports
+          path: reports
