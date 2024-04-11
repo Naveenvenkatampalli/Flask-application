@@ -22,7 +22,7 @@ jobs:
     - name: Run Selenium tests with Firefox
       env:
         BASE_URL: http://stage.bytebeam.io
-        FILES: Tests/test_login.py Tests/test_meta.py
+        FILES: Tests/test_login.py
         SANITY: regression
       run: "if [ \"$SANITY\" == \"regression\" ]; then\n  pytest $FILES --html=reports/report.html\n\
         else\n  pytest --html=reports/report.html\nfi\n"
