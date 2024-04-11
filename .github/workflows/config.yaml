@@ -26,9 +26,7 @@ jobs:
         SANITY: regression
       run: |
         if [ "$SANITY" == "regression" ]; then
-          for FILE in $FILES; do
-            pytest "$FILE" --html=reports/report.html
-          done
+          python -c "import subprocess; [subprocess.run(['pytest', file, '--html=reports/report.html']) for file in '$FILES'.split()]"
         else
           pytest --html=reports/report.html
         fi
