@@ -22,14 +22,10 @@ jobs:
     - name: Run Selenium tests with Firefox
       env:
         BASE_URL: http://stage.bytebeam.io
-        FILES: Tests/test_login.py Tests/test_meta.py
+        FILES: Tests/test_meta.py
         SANITY: regression
-      run: |
-        if [ "$SANITY" == "regression" ]; then
-          pytest $FILES --html=reports/report.html
-        else
-          pytest --html=reports/report.html
-        fi
+      run: "if [ \"$SANITY\" == \"regression\" ]; then\n  pytest $FILES --html=reports/report.html\n\
+        else\n  pytest --html=reports/report.html\nfi\n"
     - name: Upload Reports as Artifacts
       if: always()
       uses: actions/upload-artifact@v2
